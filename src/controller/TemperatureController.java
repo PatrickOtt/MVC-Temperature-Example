@@ -40,6 +40,8 @@ public class TemperatureController {
 		addActionListener();
 		// initiales setzen der Temperatur
 		model.setCurrentTemperature(20.0);
+		model.setCurrentHumidity(49);
+		model.setCurrentPressure(1120);
 		
 	}
 
@@ -47,6 +49,8 @@ public class TemperatureController {
 		
 		JButton setTemperatureBtn 		= setTemperatureView.getSetTemperatureBtn();
 		final JTextField newTemperature	= setTemperatureView.getSetTemperature();
+		final JTextField newHumidity	= setTemperatureView.getSetHumindity();
+		final JTextField newPressure	= setTemperatureView.getSetPressure();
 		final JSlider slider			= setTemperatureView.getTemperatureSlider();
 		setTemperatureBtn.addActionListener(new ActionListener() {
 			
@@ -54,7 +58,13 @@ public class TemperatureController {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					double newTemp = Double.parseDouble(newTemperature.getText());
+					String humidity = newHumidity.getText();
+					double humidityDouble = Double.parseDouble(humidity);
+					String pressure = newPressure.getText();
+					double pressureDouble = Double.parseDouble(pressure);
 					model.setCurrentTemperature(newTemp);
+					model.setCurrentHumidity(humidityDouble);
+					model.setCurrentPressure(pressureDouble);
 				} catch(NumberFormatException ex) {
 					setTemperatureView.getSetTemperature().setText("Fehlerhafte Eingabe! Nur Zahlen sind zulässig!");
 				}

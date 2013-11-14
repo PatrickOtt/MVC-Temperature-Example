@@ -33,6 +33,10 @@ public class FahrenheitView extends JFrame implements TemperatureViewInterface {
 	
 	@Override
 	public void update(double temperature) {
+	}
+
+	@Override
+	public void update(double temperature, double pressure, double humidity) {
 		this.currentFahrenheit.setText((temperature*1.8+32) + "F");
 	}
 

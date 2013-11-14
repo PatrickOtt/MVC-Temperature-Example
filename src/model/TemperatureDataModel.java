@@ -8,6 +8,9 @@ import view.TemperatureViewInterface;
 public class TemperatureDataModel implements TemperatureDataModelInterface {
 
 	private double currentTemperature;
+	private double currentPressure;
+	private double currentHumidity;
+	
 	private List<TemperatureViewInterface> observers;
 	
 	public TemperatureDataModel() {
@@ -24,9 +27,27 @@ public class TemperatureDataModel implements TemperatureDataModelInterface {
 		updateObserver();
 	}
 
+	public double getCurrentPressure() {
+		return currentPressure;
+	}
+
+	public void setCurrentPressure(double currentPressure) {
+		this.currentPressure = currentPressure;
+		updateObserver();
+	}
+
+	public double getCurrentHumidity() {
+		return currentHumidity;
+	}
+
+	public void setCurrentHumidity(double currentHumidity) {
+		this.currentHumidity = currentHumidity;
+		updateObserver();
+	}
+
 	private void updateObserver() {
 		for(TemperatureViewInterface tv : observers) {
-			tv.update(currentTemperature);
+			tv.update(currentTemperature, currentPressure, currentHumidity);
 		}
 	}
 
